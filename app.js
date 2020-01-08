@@ -6,7 +6,7 @@ const apiStarships = axios.get(`${api}starships`);
 
 const root = document.querySelector("#root");
 
-const renderHTML = (list, category) => {
+const renderHTML = (list, category, key, description, array) => {
     const htmlText = 
         `<div class = "list">
             <h2> ${category} </h2>
@@ -15,6 +15,7 @@ const renderHTML = (list, category) => {
                     const key1 = Object.keys(result)[0];
                     return `<div class = "card">
                                 <h3>${result[key1].toUpperCase()}</h3>
+                                <p> ${description} ${array ? result[key].length : result[key]} </p>
                             </div>`
                     }).join('') 
                 + `</ul>
@@ -32,10 +33,10 @@ const loadData = async() => {
     console.log(starships);
 
     root.innerHTML = 
-        renderHTML(films, "Films") +
-        renderHTML(people, "Characters") +
-        renderHTML(vehicles, "Vehicles") +
-        renderHTML(starships, "Starships");
+        renderHTML(films, "Films", "release_date", "Released on:") +
+        renderHTML(people, "Characters", "films", "Number of Star Wars films:", true) +
+        renderHTML(vehicles, "Vehicles", "model", "Vehicle Type:") +
+        renderHTML(starships, "Starships", "model", "Starship Type:");
 
 }
 

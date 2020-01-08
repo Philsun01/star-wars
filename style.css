@@ -12,6 +12,7 @@ body {
 }
 
 .card {
+    background-color: beige;
     border-style: solid;
     border-color: black;
     border-radius: 0.5rem;
